@@ -34,3 +34,10 @@
   * Redirect URI 등록
   * 동의 항목 설정
 3. 기능 구현
+
+<br/>
+
+## Reference
+* [좋은 소프트웨어 설계의 조건](https://yozm.wishket.com/magazine/detail/1884/)
+* [kakao developers | 카카오 로그인 API](https://developers.kakao.com/docs/latest/ko/kakaologin/common)
+* [OAuth 2.0 개념과 동작 원리](https://hudi.blog/oauth-2.0/)
