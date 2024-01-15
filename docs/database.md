@@ -1,43 +1,10 @@
-# Table
-**`bold`** 카카오 로그인 API를 통해 제공받는 정보
-
-### user
-* **email** (PK) > 중복 체크 필요
-* password
-* teamId (FK)
-* **userName**
-* type
-* nickname > 중복 체크 필요
-* **gender**
-* **birthDate**
-* **phoneNumber**
-* image > 검토 필요
-
-### team
-* teamId (PK)
-* teamName
-
-<br/>
-
-## Feature
-* Only start with kakao account
-  * Flow : 카카오 API 키를 이용해 사용자 유효성 검증 → 인가코드 발급 요청 → 인가코드를 Redirect URI에 등록된 곳으로 반환 → 인가코드로 Access token 발급 요청 → Access token 발급 → Access token으로 사용자 정보 요청
-
-<br/>
-
-## To Do
-1. 화면 구현
-2. kakao developer 설정
-* API Key 발급
-* 플랫폼 설정
-  * 사이트 도메인 등록
-  * Redirect URI 등록
-  * 동의 항목 설정
-3. 기능 구현
+# Database
+* [ERD(Entity Relationship Diagram)](https://www.erdcloud.com/d/vrqSnPtrivjzPegQD) / Recent (2024. 01. 10)
 
 <br/>
 
 ## Reference
-* [좋은 소프트웨어 설계의 조건](https://yozm.wishket.com/magazine/detail/1884/)
-* [kakao developers | 카카오 로그인 API](https://developers.kakao.com/docs/latest/ko/kakaologin/common)
-* [OAuth 2.0 개념과 동작 원리](https://hudi.blog/oauth-2.0/)
+* [DB 설계는 어떻게 해야 할까?](https://velog.io/@sontulip/how-to-db-design)
+* [ERD Cloud 사용법](https://inpa.tistory.com/entry/ERD-CLOUD-%E2%98%81%EF%B8%8F-ERD-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8%EC%9D%84-%EC%98%A8%EB%9D%BC%EC%9D%B8%EC%97%90%EC%84%9C-%EA%B7%B8%EB%A0%A4%EB%B3%B4%EC%9E%90)
+* [MySQL 데이터 타입(자료형) 정리](https://devdhjo.github.io/mysql/2020/01/30/database-mysql-003.html)
+* [ERD 기호 및 표기법](https://mjn5027.tistory.com/43)
