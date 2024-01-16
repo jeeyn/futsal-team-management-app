@@ -33,9 +33,9 @@ CREATE TABLE `TeamSchedule` (
 
 CREATE TABLE `Comment` (
 	`comment_id`	INTEGER	NOT NULL	COMMENT 'PK',
-	`exercise_id`	INTEGER	NOT NULL	COMMENT 'FK, PK',
-	`team_id`	INTEGER	NOT NULL	COMMENT 'FK, PK',
 	`user_id`	INTEGER	NOT NULL	COMMENT 'FK, PK',
+	`exercise_id`	INTEGER	NOT NULL	COMMENT 'FK',
+	`team_id`	INTEGER	NOT NULL	COMMENT 'FK',
 	`content`	VARCHAR(200)	NOT NULL
 );
 
@@ -49,8 +49,8 @@ CREATE TABLE `NonUser` (
 );
 
 CREATE TABLE `Members` (
-	`user_id`	INTEGER	NOT NULL	COMMENT 'FK, PK',
 	`team_id`	INTEGER	NOT NULL	COMMENT 'FK, PK',
+	`user_id`	INTEGER	NOT NULL	COMMENT 'FK, PK',
 	`join_type`	VARCHAR(20)	NOT NULL	COMMENT 'Coach / Captain / Staff / Member'
 );
 
@@ -76,8 +76,6 @@ ALTER TABLE `TeamSchedule` ADD CONSTRAINT `PK_TEAMSCHEDULE` PRIMARY KEY (
 
 ALTER TABLE `Comment` ADD CONSTRAINT `PK_COMMENT` PRIMARY KEY (
 	`comment_id`,
-	`exercise_id`,
-	`team_id`,
 	`user_id`
 );
 
@@ -86,8 +84,8 @@ ALTER TABLE `NonUser` ADD CONSTRAINT `PK_NONUSER` PRIMARY KEY (
 );
 
 ALTER TABLE `Members` ADD CONSTRAINT `PK_MEMBERS` PRIMARY KEY (
-	`user_id`,
-	`team_id`
+	`team_id`,
+	`user_id`
 );
 
 ALTER TABLE `Participant` ADD CONSTRAINT `PK_PARTICIPANT` PRIMARY KEY (
@@ -100,6 +98,13 @@ ALTER TABLE `TeamSchedule` ADD CONSTRAINT `FK_Team_TO_TeamSchedule_1` FOREIGN KE
 )
 REFERENCES `Team` (
 	`team_id`
+);
+
+ALTER TABLE `Comment` ADD CONSTRAINT `FK_User_TO_Comment_1` FOREIGN KEY (
+	`user_id`
+)
+REFERENCES `User` (
+	`user_id`
 );
 
 ALTER TABLE `Comment` ADD CONSTRAINT `FK_TeamSchedule_TO_Comment_1` FOREIGN KEY (
@@ -116,11 +121,11 @@ REFERENCES `TeamSchedule` (
 	`team_id`
 );
 
-ALTER TABLE `Comment` ADD CONSTRAINT `FK_User_TO_Comment_1` FOREIGN KEY (
-	`user_id`
+ALTER TABLE `Members` ADD CONSTRAINT `FK_Team_TO_Members_1` FOREIGN KEY (
+	`team_id`
 )
-REFERENCES `User` (
-	`user_id`
+REFERENCES `Team` (
+	`team_id`
 );
 
 ALTER TABLE `Members` ADD CONSTRAINT `FK_User_TO_Members_1` FOREIGN KEY (
@@ -128,13 +133,6 @@ ALTER TABLE `Members` ADD CONSTRAINT `FK_User_TO_Members_1` FOREIGN KEY (
 )
 REFERENCES `User` (
 	`user_id`
-);
-
-ALTER TABLE `Members` ADD CONSTRAINT `FK_Team_TO_Members_1` FOREIGN KEY (
-	`team_id`
-)
-REFERENCES `Team` (
-	`team_id`
 );
 
 ALTER TABLE `Participant` ADD CONSTRAINT `FK_TeamSchedule_TO_Participant_1` FOREIGN KEY (
@@ -164,4 +162,3 @@ ALTER TABLE `Participant` ADD CONSTRAINT `FK_NonUser_TO_Participant_1` FOREIGN K
 REFERENCES `NonUser` (
 	`non_user_id`
 );
-
